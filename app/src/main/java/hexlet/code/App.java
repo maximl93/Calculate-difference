@@ -5,10 +5,14 @@ import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 import picocli.CommandLine.Parameters;
 
+import java.io.IOException;
+
+import static hexlet.code.Util.jsonToMap;
+
 @Command(name = "gendiff",
         mixinStandardHelpOptions = true,
         description = "Compares two configuration files and shows a difference.")
-public class App implements Runnable{
+public class App implements Runnable {
 
     @Option(names = {"-f", "--format"}, description = "output format [default: stylish]")
     String format;
@@ -24,6 +28,11 @@ public class App implements Runnable{
 
     @Override
     public void run() {
-        System.out.println("Hello World!");
+        try {
+            System.out.println(jsonToMap(filePath1));
+            System.out.println(jsonToMap(filePath2));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
