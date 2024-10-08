@@ -7,7 +7,7 @@ import picocli.CommandLine.Parameters;
 
 import java.io.IOException;
 
-import static hexlet.code.Util.jsonToMap;
+import static hexlet.code.Differ.generate;
 
 @Command(name = "gendiff",
         mixinStandardHelpOptions = true,
@@ -29,8 +29,7 @@ public class App implements Runnable {
     @Override
     public void run() {
         try {
-            System.out.println(jsonToMap(filePath1));
-            System.out.println(jsonToMap(filePath2));
+            System.out.println(generate(filePath1, filePath2));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
