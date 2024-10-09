@@ -20,18 +20,19 @@ public class Differ {
         listOfKeys.stream()
                 .distinct()
                 .sorted()
-                        .forEach(key -> {
-                            if (file1.containsKey(key) && !file2.containsKey(key)) {
-                                result.put("- " + key, file1.get(key));
-                            } else if (file2.containsKey(key) && !file1.containsKey(key)) {
-                                result.put("+ " + key, file1.get(key));
-                            } else if (file1.containsKey(key) && file2.containsKey(key) && !file1.get(key).equals(file2.get(key))) {
-                                result.put("- " + key, file1.get(key));
-                                result.put("+ " + key, file2.get(key));
-                            } else {
-                                result.put(key, file1.get(key));
-                            }
-                        });
+                .forEach(key -> {
+                    if (file1.containsKey(key) && !file2.containsKey(key)) {
+                        result.put("- " + key, file1.get(key));
+                    } else if (file2.containsKey(key) && !file1.containsKey(key)) {
+                        result.put("+ " + key, file2.get(key));
+                    } else if (file1.containsKey(key) && file2.containsKey(key)
+                                && !file1.get(key).equals(file2.get(key))) {
+                        result.put("- " + key, file1.get(key));
+                        result.put("+ " + key, file2.get(key));
+                    } else {
+                        result.put(key, file1.get(key));
+                    }
+                });
 
         return result;
     }

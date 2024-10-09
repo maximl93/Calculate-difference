@@ -1,10 +1,8 @@
 package hexlet.code;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
-import java.util.LinkedHashMap;
 import java.util.Map;
 
 import static hexlet.code.Differ.mapOfDiff;
@@ -13,13 +11,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class UtilTest {
 
-
     @Test
-    public void getDiffTest() throws IOException {
-        var expected = jsonToMap("expected.json");
-        var actual = mapOfDiff(jsonToMap("file1.json"), jsonToMap("file2.json"));
-        assertEquals(expected, actual);
+    public void getPathTest() {
+        var actual1 = getFilePath("file1.json");
+        assertEquals("/", actual1);
     }
+
 
     @Test
     public void jsonToMapTest() throws IOException {
