@@ -14,7 +14,7 @@ import static hexlet.code.Differ.generate;
         description = "Compares two configuration files and shows a difference.")
 public class App implements Runnable {
 
-    @Option(names = {"-f", "--format"}, description = "output format [default: stylish]")
+    @Option(names = {"-f", "--format"}, defaultValue = "stylish", description = "output format [default: stylish]")
     String format;
 
     @Parameters(paramLabel = "filepath1", description = "path to first file")
@@ -29,7 +29,7 @@ public class App implements Runnable {
     @Override
     public void run() {
         try {
-            System.out.println(generate(filePath1, filePath2));
+            System.out.println(generate(format ,filePath1, filePath2));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
