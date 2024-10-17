@@ -3,6 +3,7 @@ make run-dist:
 
 make build:
 	./gradlew clean build
+	./gradlew clean install
 	./gradlew test
 	./gradlew checkstyleMain
 
