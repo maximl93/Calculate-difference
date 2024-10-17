@@ -27,7 +27,7 @@ public class Parser {
         ObjectMapper mapper = YAMLMapper.builder()
                 .disable(YAMLGenerator.Feature.WRITE_DOC_START_MARKER)
                 .build();
-        return mapper.readValue(yaml,new TypeReference<>() { });
+        return mapper.readValue(yaml, new TypeReference<>() { });
     }
 
     public static Map<String, Object> getFileParser(String filePath) throws IOException {

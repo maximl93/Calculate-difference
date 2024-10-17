@@ -29,7 +29,7 @@ public class App implements Runnable {
     @Override
     public void run() {
         try {
-            System.out.println(generate(format ,filePath1, filePath2));
+            System.out.println(generate(format, filePath1, filePath2));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

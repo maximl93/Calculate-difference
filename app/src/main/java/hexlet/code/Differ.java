@@ -1,16 +1,20 @@
 package hexlet.code;
 
 import java.io.IOException;
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.Map;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.Optional;
 
-import static hexlet.code.Format.stylish;
+
 import static hexlet.code.Parser.getFileParser;
+import static hexlet.code.formatters.Formatter.chooseFormatter;
 
 public class Differ {
 
-    public static Map<String, Object> mapOfDiff(String filePath1, String filePath2) throws IOException {
-        var result = new LinkedHashMap<String, Object>();
+    public static String generate(String format, String filePath1, String filePath2) throws IOException {
+        List<Map<String, Object>> twoFileDifference = new ArrayList<>();
 
         Map<String, Object> file1 = getFileParser(filePath1);
         Map<String, Object> file2 = getFileParser(filePath2);
@@ -22,28 +26,33 @@ public class Differ {
                 .distinct()
                 .sorted()
                 .forEach(key -> {
-                    if (file1.containsKey(key) && !file2.containsKey(key)) {
-                        result.put("- " + key, file1.get(key));
-                    } else if (file2.containsKey(key) && !file1.containsKey(key)) {
-                        result.put("+ " + key, file2.get(key));
-                    } else if (file1.containsKey(key) && file2.containsKey(key) &&
-                            !Optional.ofNullable(file1.get(key)).equals(Optional.ofNullable(file2.get(key)))) {
-                        result.put("- " + key, file1.get(key));
-                        result.put("+ " + key, file2.get(key));
-                    } else {
-                        result.put("  " + key, file1.get(key));
-                    }
+                    twoFileDifference.add(diff(key, file1, file2));
                 });
 
-        return result;
+        return chooseFormatter(format, twoFileDifference);
     }
 
-    public static String generate(String format , String filePath1, String filePath2) throws IOException {
-        switch (format) {
-            case "stylish":
-                return stylish(mapOfDiff(filePath1, filePath2));
-            default:
-                return "";
+
+    public static Map<String, Object> diff(String key, Map<String, Object> file1, Map<String, Object> file2) {
+        Map<String, Object> difference = new LinkedHashMap<>();
+        difference.put("key", key);
+
+        if (file1.containsKey(key) && !file2.containsKey(key)) {
+            difference.put("value", file1.get(key));
+            difference.put("status", "removed");
+        } else if (file2.containsKey(key) && !file1.containsKey(key)) {
+            difference.put("value", file2.get(key));
+            difference.put("status", "added");
+        } else if (file1.containsKey(key) && file2.containsKey(key)
+                && !Optional.ofNullable(file1.get(key)).equals(Optional.ofNullable(file2.get(key)))) {
+            difference.put("value1", file1.get(key));
+            difference.put("value2", file2.get(key));
+            difference.put("status", "updated");
+        } else {
+            difference.put("value", file1.get(key));
+            difference.put("status", "unchanged");
         }
+
+        return difference;
     }
 }
