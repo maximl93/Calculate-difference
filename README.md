@@ -28,4 +28,7 @@ make build
    [![asciicast](https://asciinema.org/a/9ksjX0n1TUfiVfG1rGPg47VHw.svg)](https://asciinema.org/a/9ksjX0n1TUfiVfG1rGPg47VHw)
 
 3. Comparing two nested YAML files (plain).
-   [![asciicast](https://asciinema.org/a/D9tT0Bo55UhpJlHy5SHj2E8rC.svg)](https://asciinema.org/a/D9tT0Bo55UhpJlHy5SHj2E8rC)    
+   [![asciicast](https://asciinema.org/a/D9tT0Bo55UhpJlHy5SHj2E8rC.svg)](https://asciinema.org/a/D9tT0Bo55UhpJlHy5SHj2E8rC)
+
+4. Comparing two nested YAML files (json).
+   [![asciicast](https://asciinema.org/a/P4EgmdAXsjp5F2KEhwwZk4CwM.svg)](https://asciinema.org/a/P4EgmdAXsjp5F2KEhwwZk4CwM)
