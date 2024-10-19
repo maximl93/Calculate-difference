@@ -1,6 +1,6 @@
 package hexlet.code;
 
-public class FormatError extends Exception {
+public final class FormatError extends Exception {
     private final String file;
 
     FormatError(String file) {
