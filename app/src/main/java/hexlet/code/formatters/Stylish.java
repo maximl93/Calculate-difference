@@ -7,7 +7,7 @@ import java.util.Map;
 public class Stylish {
 
     public static String stylish(List<Map<String, Object>> difference) throws IOException {
-        StringBuilder result = new StringBuilder("{\r\n");
+        StringBuilder result = new StringBuilder("{\n");
         for (Map<String, Object> diff : difference) {
             String status = diff.get("status").toString();
             switch (status) {
@@ -16,33 +16,33 @@ public class Stylish {
                             .append(diff.get("property"))
                             .append(": ")
                             .append(diff.get("value"))
-                            .append("\r\n");
+                            .append("\n");
                     break;
                 case "added":
                     result.append("  + ")
                             .append(diff.get("property"))
                             .append(": ")
                             .append(diff.get("value"))
-                            .append("\r\n");
+                            .append("\n");
                     break;
                 case "updated":
                     result.append("  - ")
                             .append(diff.get("property"))
                             .append(": ")
                             .append(diff.get("value1"))
-                            .append("\r\n");
+                            .append("\n");
                     result.append("  + ")
                             .append(diff.get("property"))
                             .append(": ")
                             .append(diff.get("value2"))
-                            .append("\r\n");
+                            .append("\n");
                     break;
                 case "unchanged":
                     result.append("    ")
                             .append(diff.get("property"))
                             .append(": ")
                             .append(diff.get("value"))
-                            .append("\r\n");
+                            .append("\n");
                 default:
                     break;
             }

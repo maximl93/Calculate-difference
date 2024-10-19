@@ -13,14 +13,14 @@ public class Plain {
                 case "removed":
                     result.append("Property '")
                             .append(diff.get("property"))
-                            .append("' was removed\r\n");
+                            .append("' was removed\n");
                     break;
                 case "added":
                     result.append("Property '")
                             .append(diff.get("property"))
                             .append("' was added with value: ")
                             .append(defineValueType(diff.get("value")))
-                            .append("\r\n");
+                            .append("\n");
                     break;
                 case "updated":
                     result.append("Property '")
@@ -29,7 +29,7 @@ public class Plain {
                             .append(defineValueType(diff.get("value1")))
                             .append(" to ")
                             .append(defineValueType(diff.get("value2")))
-                            .append("\r\n");
+                            .append("\n");
                     break;
                 default:
                     break;
