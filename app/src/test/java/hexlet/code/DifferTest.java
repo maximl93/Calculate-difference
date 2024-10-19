@@ -14,12 +14,12 @@ public class DifferTest {
     @Test
     public void generateStylishTest() throws IOException, FormatError {
         var expected = readFile("src/test/resources/fixtures/nestedExpectedStylish.txt");
-        var actual1 = generate("stylish",
-                "src/test/resources/fixtures/nestedFile1.json",
-                "src/test/resources/fixtures/nestedFile2.json");
-        var actual2 = generate("stylish",
-                "src/test/resources/fixtures/nestedFile1.yaml",
-                "src/test/resources/fixtures/nestedFile2.yaml");
+        var actual1 = generate("src/test/resources/fixtures/nestedFile1.json",
+                "src/test/resources/fixtures/nestedFile2.json",
+                "stylish");
+        var actual2 = generate("src/test/resources/fixtures/nestedFile1.yaml",
+                "src/test/resources/fixtures/nestedFile2.yaml",
+                "stylish");
 
         assertEquals(expected, actual1);
         assertEquals(expected, actual2);
@@ -28,12 +28,12 @@ public class DifferTest {
     @Test
     public void generatePlainTest() throws IOException, FormatError {
         var expected = readFile("src/test/resources/fixtures/nestedExpectedPlain.txt");
-        var actual1 = generate("plain",
-                "src/test/resources/fixtures/nestedFile1.json",
-                "src/test/resources/fixtures/nestedFile2.json");
-        var actual2 = generate("plain",
-                "src/test/resources/fixtures/nestedFile1.yaml",
-                "src/test/resources/fixtures/nestedFile2.yaml");
+        var actual1 = generate("src/test/resources/fixtures/nestedFile1.json",
+                "src/test/resources/fixtures/nestedFile2.json",
+                "plain");
+        var actual2 = generate("src/test/resources/fixtures/nestedFile1.yaml",
+                "src/test/resources/fixtures/nestedFile2.yaml",
+                "plain");
 
         assertEquals(expected, actual1);
         assertEquals(expected, actual2);
@@ -42,9 +42,9 @@ public class DifferTest {
     @Test
     public void generateJsonTest() throws IOException, FormatError {
         var expected = readFile("src/test/resources/fixtures/nestedExpectedJson.txt");
-        var actual1 = generate("json",
-                "src/test/resources/fixtures/nestedFile1.json",
-                "src/test/resources/fixtures/nestedFile2.json");
+        var actual1 = generate("src/test/resources/fixtures/nestedFile1.json",
+                "src/test/resources/fixtures/nestedFile2.json",
+                "json");
 
         assertEquals(expected, actual1);
     }
