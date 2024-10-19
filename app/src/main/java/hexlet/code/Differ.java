@@ -34,6 +34,10 @@ public class Differ {
         return chooseFormatter(formatName, twoFileDifference);
     }
 
+    public static String generate(String filePath1, String filePath2) throws IOException, FormatError {
+        return generate(filePath1, filePath2, "stylish");
+    }
+
 
     public static Map<String, Object> findDiff(String key, Map<String, Object> file1, Map<String, Object> file2) {
         Map<String, Object> difference = new LinkedHashMap<>();
