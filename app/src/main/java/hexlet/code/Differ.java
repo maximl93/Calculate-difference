@@ -13,7 +13,7 @@ import static hexlet.code.formatters.Formatter.chooseFormatter;
 
 public class Differ {
 
-    public static String generate(String format, String filePath1, String filePath2) throws IOException {
+    public static String generate(String format, String filePath1, String filePath2) throws IOException, FormatError {
         List<Map<String, Object>> twoFileDifference = new ArrayList<>();
 
         Map<String, Object> file1 = getFileParser(filePath1);
@@ -26,16 +26,16 @@ public class Differ {
                 .distinct()
                 .sorted()
                 .forEach(key -> {
-                    twoFileDifference.add(diff(key, file1, file2));
+                    twoFileDifference.add(findDiff(key, file1, file2));
                 });
 
         return chooseFormatter(format, twoFileDifference);
     }
 
 
-    public static Map<String, Object> diff(String key, Map<String, Object> file1, Map<String, Object> file2) {
+    public static Map<String, Object> findDiff(String key, Map<String, Object> file1, Map<String, Object> file2) {
         Map<String, Object> difference = new LinkedHashMap<>();
-        difference.put("key", key);
+        difference.put("property", key);
 
         if (file1.containsKey(key) && !file2.containsKey(key)) {
             difference.put("value", file1.get(key));

@@ -12,19 +12,19 @@ public class Plain {
             switch (status) {
                 case "removed":
                     result.append("Property '")
-                            .append(diff.get("key"))
+                            .append(diff.get("property"))
                             .append("' was removed\r\n");
                     break;
                 case "added":
                     result.append("Property '")
-                            .append(diff.get("key"))
+                            .append(diff.get("property"))
                             .append("' was added with value: ")
                             .append(defineValueType(diff.get("value")))
                             .append("\r\n");
                     break;
                 case "updated":
                     result.append("Property '")
-                            .append(diff.get("key"))
+                            .append(diff.get("property"))
                             .append("' was updated. From ")
                             .append(defineValueType(diff.get("value1")))
                             .append(" to ")

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
+import static hexlet.code.formatters.Json.json;
 import static hexlet.code.formatters.Stylish.stylish;
 import static hexlet.code.formatters.Plain.plain;
 
@@ -14,6 +15,8 @@ public class Formatter {
                 return stylish(difference);
             case "plain":
                 return plain(difference);
+            case "json":
+                return json(difference);
             default:
                 return "No such formatter exist";
         }

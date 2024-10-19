@@ -30,13 +30,15 @@ public class Parser {
         return mapper.readValue(yaml, new TypeReference<>() { });
     }
 
-    public static Map<String, Object> getFileParser(String filePath) throws IOException {
-        var fileFormat = filePath.substring(filePath.lastIndexOf(".") + 1);
+    public static Map<String, Object> getFileParser(String filePath) throws IOException, FormatError {
+        var fileFormat = filePath.substring(filePath.lastIndexOf(".") + 1).toLowerCase();
 
         if (fileFormat.equals("json")) {
             return jsonToMap(filePath);
-        } else {
+        } else if (fileFormat.equals("yaml") || fileFormat.equals("yml")) {
             return yamlToMap(filePath);
+        } else {
+            throw new FormatError(filePath.substring(filePath.lastIndexOf("/") + 1));
         }
     }
 }

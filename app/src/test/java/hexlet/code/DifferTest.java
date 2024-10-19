@@ -12,7 +12,7 @@ public class DifferTest {
 
 
     @Test
-    public void generateStylishTest() throws IOException {
+    public void generateStylishTest() throws IOException, FormatError {
         var expected = readFile("src/test/resources/fixtures/nestedExpectedStylish.txt");
         var actual1 = generate("stylish",
                 "src/test/resources/fixtures/nestedFile1.json",
@@ -26,7 +26,7 @@ public class DifferTest {
     }
 
     @Test
-    public void generatePlainTest() throws IOException {
+    public void generatePlainTest() throws IOException, FormatError {
         var expected = readFile("src/test/resources/fixtures/nestedExpectedPlain.txt");
         var actual1 = generate("plain",
                 "src/test/resources/fixtures/nestedFile1.json",
@@ -37,5 +37,15 @@ public class DifferTest {
 
         assertEquals(expected, actual1);
         assertEquals(expected, actual2);
+    }
+
+    @Test
+    public void generateJsonTest() throws IOException, FormatError {
+        var expected = readFile("src/test/resources/fixtures/nestedExpectedJson.txt");
+        var actual1 = generate("json",
+                "src/test/resources/fixtures/nestedFile1.json",
+                "src/test/resources/fixtures/nestedFile2.json");
+
+        assertEquals(expected, actual1);
     }
 }

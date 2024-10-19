@@ -13,21 +13,21 @@ public class Stylish {
             switch (status) {
                 case "removed":
                     result.append("  - ")
-                            .append(diff.get("key"))
+                            .append(diff.get("property"))
                             .append(": ")
                             .append(diff.get("value"))
                             .append("\r\n");
                     break;
                 case "added":
                     result.append("  + ")
-                            .append(diff.get("key"))
+                            .append(diff.get("property"))
                             .append(": ")
                             .append(diff.get("value"))
                             .append("\r\n");
                     break;
                 case "updated":
                     result.append("  - ")
-                            .append(diff.get("key"))
+                            .append(diff.get("property"))
                             .append(": ")
                             .append(diff.get("value1"))
                             .append("\r\n");
@@ -39,7 +39,7 @@ public class Stylish {
                     break;
                 case "unchanged":
                     result.append("    ")
-                            .append(diff.get("key"))
+                            .append(diff.get("property"))
                             .append(": ")
                             .append(diff.get("value"))
                             .append("\r\n");

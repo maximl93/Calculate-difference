@@ -32,6 +32,8 @@ public class App implements Runnable {
             System.out.println(generate(format, filePath1, filePath2));
         } catch (IOException e) {
             throw new RuntimeException(e);
+        } catch (FormatError e) {
+            System.out.println("Not supported file format: " + e);
         }
     }
 }
