@@ -14,7 +14,7 @@ public class Util {
 
     public static String readFile(String filePath) throws IOException {
         var path = getFilePath(filePath);
-        return Files.readString(path).trim();
+        return Files.readString(path).trim().replace("\r", "");
     }
 
 
