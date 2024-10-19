@@ -13,7 +13,7 @@ import static hexlet.code.formatters.Formatter.chooseFormatter;
 
 public class Differ {
 
-    public static String generate(String format, String filePath1, String filePath2) throws IOException, FormatError {
+    public static String generate(String filePath1, String filePath2, String formatName) throws IOException, FormatError {
         List<Map<String, Object>> twoFileDifference = new ArrayList<>();
 
         Map<String, Object> file1 = getFileParser(filePath1);
@@ -29,7 +29,7 @@ public class Differ {
                     twoFileDifference.add(findDiff(key, file1, file2));
                 });
 
-        return chooseFormatter(format, twoFileDifference);
+        return chooseFormatter(formatName, twoFileDifference);
     }
 
 
