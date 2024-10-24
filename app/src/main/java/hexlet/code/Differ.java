@@ -17,7 +17,7 @@ public class Differ {
 
     public static String generate(String filePath1,
                                   String filePath2,
-                                  String formatName) throws IOException, FormatError {
+                                  String formatName) throws IOException {
         List<Map<String, Object>> twoFileDifference = new ArrayList<>();
 
         Map<String, Object> file1 = getFileParser(filePath1);
@@ -31,7 +31,7 @@ public class Differ {
         return chooseFormatter(formatName, twoFileDifference);
     }
 
-    public static String generate(String filePath1, String filePath2) throws IOException, FormatError {
+    public static String generate(String filePath1, String filePath2) throws IOException {
         return generate(filePath1, filePath2, "stylish");
     }
 

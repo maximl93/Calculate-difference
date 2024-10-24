@@ -10,15 +10,11 @@ import static hexlet.code.formatters.Plain.plain;
 
 public class Formatter {
     public static String chooseFormatter(String format, List<Map<String, Object>> difference) throws IOException {
-        switch (format) {
-            case "stylish":
-                return stylish(difference);
-            case "plain":
-                return plain(difference);
-            case "json":
-                return json(difference);
-            default:
-                return "No such formatter exist";
-        }
+        return switch (format) {
+            case "stylish" -> stylish(difference);
+            case "plain" -> plain(difference);
+            case "json" -> json(difference);
+            default -> "No such formatter exist";
+        };
     }
 }

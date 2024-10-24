@@ -12,7 +12,7 @@ public class DifferTest {
 
 
     @Test
-    public void generateStylishTest() throws IOException, FormatError {
+    public void generateStylishTest() throws IOException {
         String expected = readFile("src/test/resources/fixtures/nestedExpectedStylish.txt");
         String actual1 = generate("src/test/resources/fixtures/nestedFile1.json",
                 "src/test/resources/fixtures/nestedFile2.json",
@@ -26,7 +26,7 @@ public class DifferTest {
     }
 
     @Test
-    public void generatePlainTest() throws IOException, FormatError {
+    public void generatePlainTest() throws IOException {
         String expected = readFile("src/test/resources/fixtures/nestedExpectedPlain.txt");
         String actual1 = generate("src/test/resources/fixtures/nestedFile1.json",
                 "src/test/resources/fixtures/nestedFile2.json",
@@ -40,7 +40,7 @@ public class DifferTest {
     }
 
     @Test
-    public void generateJsonTest() throws IOException, FormatError {
+    public void generateJsonTest() throws IOException {
         String expected = readFile("src/test/resources/fixtures/nestedExpectedJson.txt");
         String actual1 = generate("src/test/resources/fixtures/nestedFile1.json",
                 "src/test/resources/fixtures/nestedFile2.json",

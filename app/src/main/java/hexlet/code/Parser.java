@@ -30,13 +30,13 @@ public class Parser {
         return mapper.readValue(yaml, new TypeReference<>() { });
     }
 
-    public static Map<String, Object> getFileParser(String filePath) throws IOException, FormatError {
+    public static Map<String, Object> getFileParser(String filePath) throws IOException {
         String fileFormat = filePath.substring(filePath.lastIndexOf(".") + 1).toLowerCase();
 
         return switch (fileFormat) {
             case "json" -> jsonToMap(filePath);
             case "yaml", "yml" -> yamlToMap(filePath);
-            default -> throw new FormatError(filePath.substring(filePath.lastIndexOf("/") + 1));
+            default -> throw new RuntimeException("Not supported file format");
         };
     }
 }
