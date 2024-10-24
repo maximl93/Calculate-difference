@@ -22,10 +22,6 @@ public final class App implements Runnable {
     @Parameters(paramLabel = "filepath2", description = "path to second file")
     private String filePath2;
 
-    public static void main(String[] args) {
-        new CommandLine(new App()).execute(args);
-    }
-
     @Override
     public void run() {
         try {
@@ -35,5 +31,9 @@ public final class App implements Runnable {
         } catch (FormatError e) {
             System.out.println("Not supported file format: " + e);
         }
+    }
+
+    public static void main(String[] args) {
+        new CommandLine(new App()).execute(args);
     }
 }

@@ -12,43 +12,34 @@ public class Stylish {
             String status = diff.get("status").toString();
             switch (status) {
                 case "removed":
-                    result.append("  - ")
-                            .append(diff.get("property"))
-                            .append(": ")
-                            .append(diff.get("value"))
-                            .append("\n");
+                    result.append("  - ");
+                    addToResult(result, diff.get("property"), diff.get("value"));
                     break;
                 case "added":
-                    result.append("  + ")
-                            .append(diff.get("property"))
-                            .append(": ")
-                            .append(diff.get("value"))
-                            .append("\n");
+                    result.append("  + ");
+                    addToResult(result, diff.get("property"), diff.get("value"));
                     break;
                 case "updated":
-                    result.append("  - ")
-                            .append(diff.get("property"))
-                            .append(": ")
-                            .append(diff.get("value1"))
-                            .append("\n");
-                    result.append("  + ")
-                            .append(diff.get("property"))
-                            .append(": ")
-                            .append(diff.get("value2"))
-                            .append("\n");
+                    result.append("  - ");
+                    addToResult(result, diff.get("property"), diff.get("value1"));
+                    result.append("  + ");
+                    addToResult(result, diff.get("property"), diff.get("value2"));
                     break;
                 case "unchanged":
-                    result.append("    ")
-                            .append(diff.get("property"))
-                            .append(": ")
-                            .append(diff.get("value"))
-                            .append("\n");
+                    result.append("    ");
+                    addToResult(result, diff.get("property"), diff.get("value"));
                 default:
                     break;
             }
         }
 
-
         return result.append("}").toString().trim();
+    }
+
+    private static void addToResult(StringBuilder result, Object property, Object value) {
+        result.append(property)
+                .append(": ")
+                .append(value)
+                .append("\n");
     }
 }

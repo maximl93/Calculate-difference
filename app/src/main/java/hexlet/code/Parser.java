@@ -12,7 +12,7 @@ import static hexlet.code.Util.readFile;
 
 public class Parser {
     public static Map<String, Object> jsonToMap(String filePath) throws IOException {
-        var json = readFile(filePath);
+        String json = readFile(filePath);
         if (json.isEmpty()) {
             return Map.of();
         }
@@ -20,7 +20,7 @@ public class Parser {
     }
 
     public static Map<String, Object> yamlToMap(String filePath) throws IOException {
-        var yaml = readFile(filePath);
+        String yaml = readFile(filePath);
         if (yaml.isEmpty()) {
             return Map.of();
         }
@@ -31,14 +31,12 @@ public class Parser {
     }
 
     public static Map<String, Object> getFileParser(String filePath) throws IOException, FormatError {
-        var fileFormat = filePath.substring(filePath.lastIndexOf(".") + 1).toLowerCase();
+        String fileFormat = filePath.substring(filePath.lastIndexOf(".") + 1).toLowerCase();
 
-        if (fileFormat.equals("json")) {
-            return jsonToMap(filePath);
-        } else if (fileFormat.equals("yaml") || fileFormat.equals("yml")) {
-            return yamlToMap(filePath);
-        } else {
-            throw new FormatError(filePath.substring(filePath.lastIndexOf("/") + 1));
-        }
+        return switch (fileFormat) {
+            case "json" -> jsonToMap(filePath);
+            case "yaml", "yml" -> yamlToMap(filePath);
+            default -> throw new FormatError(filePath.substring(filePath.lastIndexOf("/") + 1));
+        };
     }
 }

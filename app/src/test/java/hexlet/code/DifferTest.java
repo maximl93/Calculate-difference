@@ -13,11 +13,11 @@ public class DifferTest {
 
     @Test
     public void generateStylishTest() throws IOException, FormatError {
-        var expected = readFile("src/test/resources/fixtures/nestedExpectedStylish.txt");
-        var actual1 = generate("src/test/resources/fixtures/nestedFile1.json",
+        String expected = readFile("src/test/resources/fixtures/nestedExpectedStylish.txt");
+        String actual1 = generate("src/test/resources/fixtures/nestedFile1.json",
                 "src/test/resources/fixtures/nestedFile2.json",
                 "stylish");
-        var actual2 = generate("src/test/resources/fixtures/nestedFile1.yaml",
+        String actual2 = generate("src/test/resources/fixtures/nestedFile1.yaml",
                 "src/test/resources/fixtures/nestedFile2.yaml",
                 "stylish");
 
@@ -27,11 +27,11 @@ public class DifferTest {
 
     @Test
     public void generatePlainTest() throws IOException, FormatError {
-        var expected = readFile("src/test/resources/fixtures/nestedExpectedPlain.txt");
-        var actual1 = generate("src/test/resources/fixtures/nestedFile1.json",
+        String expected = readFile("src/test/resources/fixtures/nestedExpectedPlain.txt");
+        String actual1 = generate("src/test/resources/fixtures/nestedFile1.json",
                 "src/test/resources/fixtures/nestedFile2.json",
                 "plain");
-        var actual2 = generate("src/test/resources/fixtures/nestedFile1.yaml",
+        String actual2 = generate("src/test/resources/fixtures/nestedFile1.yaml",
                 "src/test/resources/fixtures/nestedFile2.yaml",
                 "plain");
 
@@ -41,8 +41,8 @@ public class DifferTest {
 
     @Test
     public void generateJsonTest() throws IOException, FormatError {
-        var expected = readFile("src/test/resources/fixtures/nestedExpectedJson.txt");
-        var actual1 = generate("src/test/resources/fixtures/nestedFile1.json",
+        String expected = readFile("src/test/resources/fixtures/nestedExpectedJson.txt");
+        String actual1 = generate("src/test/resources/fixtures/nestedFile1.json",
                 "src/test/resources/fixtures/nestedFile2.json",
                 "json");
 
