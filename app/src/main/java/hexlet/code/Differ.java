@@ -38,7 +38,6 @@ public class Differ {
 
     public static Map<String, Object> findDiff(String key, Map<String, Object> file1, Map<String, Object> file2) {
         Map<String, Object> difference = new LinkedHashMap<>();
-        difference.put("property", key);
 
         if (file1.containsKey(key) && !file2.containsKey(key)) {
             propertyRemoved(difference, file1, key);
@@ -60,23 +59,27 @@ public class Differ {
     }
 
     public static void propertyRemoved(Map<String, Object> difference, Map<String, Object> file1, String key) {
+        difference.put("property", key);
         difference.put("value", file1.get(key));
         difference.put("status", "removed");
     }
 
     public static void propertyAdded(Map<String, Object> difference, Map<String, Object> file2, String key) {
+        difference.put("property", key);
         difference.put("value", file2.get(key));
         difference.put("status", "added");
     }
 
     public static void propertyUpdated(Map<String, Object> difference, Map<String, Object> file1,
                                        Map<String, Object> file2, String key) {
+        difference.put("property", key);
         difference.put("value1", file1.get(key));
         difference.put("value2", file2.get(key));
         difference.put("status", "updated");
     }
 
     public static void propertyUnchanged(Map<String, Object> difference, Map<String, Object> file1, String key) {
+        difference.put("property", key);
         difference.put("value", file1.get(key));
         difference.put("status", "unchanged");
     }
