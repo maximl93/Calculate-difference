@@ -11,25 +11,13 @@ public class Plain {
             String status = diff.get("status").toString();
             switch (status) {
                 case "removed":
-                    result.append("Property '")
-                            .append(diff.get("property"))
-                            .append("' was removed\n");
+                    propertyRemoved(result, diff);
                     break;
                 case "added":
-                    result.append("Property '")
-                            .append(diff.get("property"))
-                            .append("' was added with value: ")
-                            .append(defineValueType(diff.get("value")))
-                            .append("\n");
+                    propertyAdded(result, diff);
                     break;
                 case "updated":
-                    result.append("Property '")
-                            .append(diff.get("property"))
-                            .append("' was updated. From ")
-                            .append(defineValueType(diff.get("value1")))
-                            .append(" to ")
-                            .append(defineValueType(diff.get("value2")))
-                            .append("\n");
+                    propertyUpdated(result, diff);
                     break;
                 default:
                     break;
@@ -37,6 +25,30 @@ public class Plain {
         }
 
         return result.toString().trim();
+    }
+
+    public static void propertyRemoved(StringBuilder result, Map<String, Object> diff) {
+        result.append("Property '")
+                .append(diff.get("property"))
+                .append("' was removed\n");
+    }
+
+    public static void propertyAdded(StringBuilder result, Map<String, Object> diff) {
+        result.append("Property '")
+                .append(diff.get("property"))
+                .append("' was added with value: ")
+                .append(defineValueType(diff.get("value")))
+                .append("\n");
+    }
+
+    public static void propertyUpdated(StringBuilder result, Map<String, Object> diff) {
+        result.append("Property '")
+                .append(diff.get("property"))
+                .append("' was updated. From ")
+                .append(defineValueType(diff.get("value1")))
+                .append(" to ")
+                .append(defineValueType(diff.get("value2")))
+                .append("\n");
     }
 
     public static <T> String defineValueType(T value) {

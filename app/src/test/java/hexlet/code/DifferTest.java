@@ -1,5 +1,6 @@
 package hexlet.code;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -10,42 +11,62 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DifferTest {
 
+    private static String expectedStylish;
+    private static String expectedPlain;
+    private static String expectedJSON;
+
+    @BeforeAll
+    public static void expectingOutcome() throws IOException {
+        expectedStylish = readFile("src/test/resources/fixtures/nestedExpectedStylish.txt");
+        expectedPlain = readFile("src/test/resources/fixtures/nestedExpectedPlain.txt");
+        expectedJSON = readFile("src/test/resources/fixtures/nestedExpectedJson.txt");
+    }
+
 
     @Test
-    public void generateStylishTest() throws IOException {
-        String expected = readFile("src/test/resources/fixtures/nestedExpectedStylish.txt");
-        String actual1 = generate("src/test/resources/fixtures/nestedFile1.json",
+    public void generateStylishTestJson() throws IOException {
+        String actual = generate("src/test/resources/fixtures/nestedFile1.json",
                 "src/test/resources/fixtures/nestedFile2.json",
                 "stylish");
-        String actual2 = generate("src/test/resources/fixtures/nestedFile1.yaml",
-                "src/test/resources/fixtures/nestedFile2.yaml",
-                "stylish");
 
-        assertEquals(expected, actual1);
-        assertEquals(expected, actual2);
+        assertEquals(expectedStylish, actual);
     }
 
     @Test
-    public void generatePlainTest() throws IOException {
-        String expected = readFile("src/test/resources/fixtures/nestedExpectedPlain.txt");
-        String actual1 = generate("src/test/resources/fixtures/nestedFile1.json",
-                "src/test/resources/fixtures/nestedFile2.json",
-                "plain");
-        String actual2 = generate("src/test/resources/fixtures/nestedFile1.yaml",
+    public void generateStylishTestYaml() throws IOException {
+        String actual = generate("src/test/resources/fixtures/nestedFile1.yaml",
                 "src/test/resources/fixtures/nestedFile2.yaml",
-                "plain");
+                "stylish");
 
-        assertEquals(expected, actual1);
-        assertEquals(expected, actual2);
+        assertEquals(expectedStylish, actual);
     }
 
     @Test
-    public void generateJsonTest() throws IOException {
-        String expected = readFile("src/test/resources/fixtures/nestedExpectedJson.txt");
-        String actual1 = generate("src/test/resources/fixtures/nestedFile1.json",
+    public void generatePlainTestJson() throws IOException {
+        String actual = generate("src/test/resources/fixtures/nestedFile1.json",
+                "src/test/resources/fixtures/nestedFile2.json",
+                "plain");
+
+        assertEquals(expectedPlain, actual);
+    }
+
+    @Test
+    public void generatePlainTestYaml() throws IOException {
+        String actual = generate("src/test/resources/fixtures/nestedFile1.yaml",
+                "src/test/resources/fixtures/nestedFile2.yaml",
+                "plain");
+
+        assertEquals(expectedPlain, actual);
+    }
+
+    @Test
+    public void generateJsonTestJson() throws IOException {
+        String actual = generate("src/test/resources/fixtures/nestedFile1.json",
                 "src/test/resources/fixtures/nestedFile2.json",
                 "json");
 
-        assertEquals(expected, actual1);
+        assertEquals(expectedJSON, actual);
     }
+
+
 }

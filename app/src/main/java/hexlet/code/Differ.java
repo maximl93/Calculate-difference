@@ -41,18 +41,13 @@ public class Differ {
         difference.put("property", key);
 
         if (file1.containsKey(key) && !file2.containsKey(key)) {
-            difference.put("value", file1.get(key));
-            difference.put("status", "removed");
+            propertyRemoved(difference, file1, key);
         } else if (file2.containsKey(key) && !file1.containsKey(key)) {
-            difference.put("value", file2.get(key));
-            difference.put("status", "added");
+            propertyAdded(difference, file2, key);
         } else if (isPropertyUpdated(key, file1, file2)) {
-            difference.put("value1", file1.get(key));
-            difference.put("value2", file2.get(key));
-            difference.put("status", "updated");
+            propertyUpdated(difference, file1, file2, key);
         } else {
-            difference.put("value", file1.get(key));
-            difference.put("status", "unchanged");
+            propertyUnchanged(difference, file1, key);
         }
 
         return difference;
@@ -62,5 +57,27 @@ public class Differ {
         return file1.containsKey(key)
                 && file2.containsKey(key)
                 && !Optional.ofNullable(file1.get(key)).equals(Optional.ofNullable(file2.get(key)));
+    }
+
+    public static void propertyRemoved(Map<String, Object> difference, Map<String, Object> file1, String key) {
+        difference.put("value", file1.get(key));
+        difference.put("status", "removed");
+    }
+
+    public static void propertyAdded(Map<String, Object> difference, Map<String, Object> file2, String key) {
+        difference.put("value", file2.get(key));
+        difference.put("status", "added");
+    }
+
+    public static void propertyUpdated(Map<String, Object> difference, Map<String, Object> file1,
+                                       Map<String, Object> file2, String key) {
+        difference.put("value1", file1.get(key));
+        difference.put("value2", file2.get(key));
+        difference.put("status", "updated");
+    }
+
+    public static void propertyUnchanged(Map<String, Object> difference, Map<String, Object> file1, String key) {
+        difference.put("value", file1.get(key));
+        difference.put("status", "unchanged");
     }
 }

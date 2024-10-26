@@ -12,28 +12,44 @@ public class Stylish {
             String status = diff.get("status").toString();
             switch (status) {
                 case "removed":
-                    result.append("  - ");
-                    addToResult(result, diff.get("property"), diff.get("value"));
+                    propertyRemoved(result, diff);
                     break;
                 case "added":
-                    result.append("  + ");
-                    addToResult(result, diff.get("property"), diff.get("value"));
+                    propertyAdded(result, diff);
                     break;
                 case "updated":
-                    result.append("  - ");
-                    addToResult(result, diff.get("property"), diff.get("value1"));
-                    result.append("  + ");
-                    addToResult(result, diff.get("property"), diff.get("value2"));
+                    propertyUpdated(result, diff);
                     break;
                 case "unchanged":
-                    result.append("    ");
-                    addToResult(result, diff.get("property"), diff.get("value"));
+                    propertyUnchanged(result, diff);
                 default:
                     break;
             }
         }
 
         return result.append("}").toString().trim();
+    }
+
+    public static void propertyRemoved(StringBuilder result, Map<String, Object> diff) {
+        result.append("  - ");
+        addToResult(result, diff.get("property"), diff.get("value"));
+    }
+
+    public static void propertyAdded(StringBuilder result, Map<String, Object> diff) {
+        result.append("  + ");
+        addToResult(result, diff.get("property"), diff.get("value"));
+    }
+
+    public static void propertyUpdated(StringBuilder result, Map<String, Object> diff) {
+        result.append("  - ");
+        addToResult(result, diff.get("property"), diff.get("value1"));
+        result.append("  + ");
+        addToResult(result, diff.get("property"), diff.get("value2"));
+    }
+
+    public static void propertyUnchanged(StringBuilder result, Map<String, Object> diff) {
+        result.append("    ");
+        addToResult(result, diff.get("property"), diff.get("value"));
     }
 
     private static void addToResult(StringBuilder result, Object property, Object value) {
