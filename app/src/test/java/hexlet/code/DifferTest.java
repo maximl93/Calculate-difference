@@ -24,7 +24,7 @@ public class DifferTest {
 
 
     @Test
-    public void generateStylishTestJson() throws IOException {
+    public void generateStylishForJsonTest() throws IOException {
         String actual = generate("src/test/resources/fixtures/nestedFile1.json",
                 "src/test/resources/fixtures/nestedFile2.json",
                 "stylish");
@@ -33,7 +33,7 @@ public class DifferTest {
     }
 
     @Test
-    public void generateStylishTestYaml() throws IOException {
+    public void generateStylishForYamlTest() throws IOException {
         String actual = generate("src/test/resources/fixtures/nestedFile1.yaml",
                 "src/test/resources/fixtures/nestedFile2.yaml",
                 "stylish");
@@ -42,7 +42,7 @@ public class DifferTest {
     }
 
     @Test
-    public void generatePlainTestJson() throws IOException {
+    public void generatePlainForJsonTest() throws IOException {
         String actual = generate("src/test/resources/fixtures/nestedFile1.json",
                 "src/test/resources/fixtures/nestedFile2.json",
                 "plain");
@@ -51,7 +51,7 @@ public class DifferTest {
     }
 
     @Test
-    public void generatePlainTestYaml() throws IOException {
+    public void generatePlainForYamlTest() throws IOException {
         String actual = generate("src/test/resources/fixtures/nestedFile1.yaml",
                 "src/test/resources/fixtures/nestedFile2.yaml",
                 "plain");
@@ -60,7 +60,7 @@ public class DifferTest {
     }
 
     @Test
-    public void generateJsonTestJson() throws IOException {
+    public void generateJsonForJsonTest() throws IOException {
         String actual = generate("src/test/resources/fixtures/nestedFile1.json",
                 "src/test/resources/fixtures/nestedFile2.json",
                 "json");
@@ -68,5 +68,12 @@ public class DifferTest {
         assertEquals(expectedJSON, actual);
     }
 
+    @Test
+    public void generateJsonForYamlTest() throws IOException {
+        String actual = generate("src/test/resources/fixtures/nestedFile1.yaml",
+                "src/test/resources/fixtures/nestedFile2.yaml",
+                "json");
 
+        assertEquals(expectedJSON, actual);
+    }
 }
