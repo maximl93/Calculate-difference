@@ -16,8 +16,14 @@ The output can be displayed in three different formats:
 ## Setup
 
 ```bash
-git clone https://github.com/maximl93/java-project-71.git
+git clone https://github.com/maximl93/Calculate-difference.git
 make build
+```
+
+## Run
+
+```bash
+make run-dist
 ```
 
 ### Demonstration
