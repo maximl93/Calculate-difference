@@ -17,6 +17,7 @@ The output can be displayed in three different formats:
 
 ```bash
 git clone https://github.com/maximl93/Calculate-difference.git
+cd Calculate-difference/app
 make build
 ```
 
